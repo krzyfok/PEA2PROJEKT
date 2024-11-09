@@ -1,5 +1,5 @@
 Testowanie_czy_plik(0/1): 1
-Plik_wejsciowy: dane2.atsp
+Plik_wejsciowy: dane3.atsp
 Plik_wyjsciowy: wyniki.csv
 progres(1/0): 1
 liczba_instancji: 7
