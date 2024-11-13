@@ -25,7 +25,6 @@ node best_node;
     node poczatek;
     poczatek.wierzcholek=0;
     poczatek.granica=LB0;
-    poczatek.parent=nullptr;
    
    for (int i = 0; i < macierz.size(); i++) {
         if (i != poczatek.wierzcholek) {
@@ -35,6 +34,7 @@ node best_node;
     rekurencja(poczatek);
 
      while (!pq.empty()) {
+      //  if(best_node.parent!=nullptr)        cout<<best_node.wierzcholek<<" "<<best_node.parent->wierzcholek<<" "<<best_node.granica<<endl;
         node current = pq.top();
         pq.pop();
         if(current.granica>UB) continue;
@@ -43,16 +43,20 @@ node best_node;
 
 
     cout << "Koszt trasy : " << UB << endl;
-    node* a=&best_node;         // Definiujemy wskaźnik do obiektu node
-//naprawic maganyzowanie trasy    
-    for(int i=0;i<macierz.size();i++)
-    {
+    /*
    
-    cout<<a->wierzcholek;
-    a=a->parent;
-    }
+   cout<<best_node.wierzcholek<<" "<<best_node.parent->wierzcholek<<endl;
+  a=*best_node.parent;
+   cout<<a.wierzcholek<<" "<<a.parent->wierzcholek<<endl;
+   b=*a.parent;
+    cout<<b.wierzcholek<<" "<<b.parent->wierzcholek;
 cout<<endl;
-    
+    */
+cout<<"trasa:";
+   for(int i=0;i<best_node.trasa.size();i++)
+   {
+    cout<<best_node.trasa[i]<<" ";
+   }
 }
 
  
@@ -65,8 +69,8 @@ cout<<endl;
        
         node temp;
         temp.wierzcholek=no.odwiedzone[i];
-        temp.parent= &no;
-        temp.granica=lower_bound(no,no.odwiedzone[i]);
+        
+          temp.granica=lower_bound(no,no.odwiedzone[i]);
         for(int k=0;k<no.odwiedzone.size();k++)
         {
             if(no.odwiedzone[k]!=no.odwiedzone[i])
@@ -74,12 +78,18 @@ cout<<endl;
                 temp.odwiedzone.push_back(no.odwiedzone[k]);
             }
         }
+        temp.trasa=no.trasa;
+        temp.trasa.push_back(no.wierzcholek);
         if (temp.odwiedzone.empty())
         {
+          
             temp.granica=lower_bound(temp,0);
             if(temp.granica<UB){
             UB=temp.granica;
+            temp.trasa.push_back(temp.wierzcholek);
             best_node=temp;
+       
+
             }
         }
         else{

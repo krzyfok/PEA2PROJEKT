@@ -2,11 +2,12 @@
 using namespace std;
 struct node
 {
-    node * parent;//wskaznik na poprzedni
+    
     int granica;//lower bound
     int wierzcholek;//numer wierzchołka- wierzchołek nie wynika bezpośrednio w wskaznika
     vector<int > odwiedzone;
-    node():parent(nullptr), granica(0), wierzcholek(0){};
+    vector<int> trasa;
+    node():granica(0), wierzcholek(0){};
 
 };
 struct CompareNode {
