@@ -52,11 +52,12 @@ node best_node;
     cout<<b.wierzcholek<<" "<<b.parent->wierzcholek;
 cout<<endl;
     */
-cout<<"trasa:";
+cout<<"trasa: ";
    for(int i=0;i<best_node.trasa.size();i++)
    {
     cout<<best_node.trasa[i]<<" ";
    }
+   cout<<endl;
 }
 
  

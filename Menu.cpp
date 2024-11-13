@@ -74,8 +74,8 @@ void Menu::main_menu() {
 	{
 		
 		Alg1 alg;
-		alg.wczytywanie(dane_wejsciowe);
-		alg.wyswietlanie();
+		AlgAbstr::wczytywanie(dane_wejsciowe);
+		AlgAbstr::wyswietlanie();
 		alg.start();
 		
 		
