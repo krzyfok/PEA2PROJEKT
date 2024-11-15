@@ -1,6 +1,8 @@
 #include<iostream>
 #include"Menu.h"
 #include"Alg1.h"
+#include"Alg2.h"
+#include"Alg3.h"
 #include<fstream>
 #include<string>
 #include<vector>
@@ -73,10 +75,15 @@ void Menu::main_menu() {
 	if (tryb == 1)
 	{
 		
-		Alg1 alg;
+		Alg1 a1;
+		Alg2 a2;
+		Alg3 a3;
 		AlgAbstr::wczytywanie(dane_wejsciowe);
 		AlgAbstr::wyswietlanie();
-		alg.start();
+		a1.start();
+		a2.start();
+		a3.start();
+
 		
 		
 	}

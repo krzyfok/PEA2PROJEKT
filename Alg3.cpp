@@ -1,13 +1,13 @@
 #include<iostream>
-#include"Alg1.h"
+#include"Alg3.h"
 #include<vector>
-#include<queue>
+#include<stack>
 #include<algorithm>
 using namespace std;
- //lowest cost
+ //LIFO dfs
   
 
- void Alg1::start()
+ void Alg3::start()
  {
 
     minima = new  int[macierz.size()];
@@ -31,10 +31,10 @@ using namespace std;
     }
     rekurencja(poczatek);
 
-     while (!pq.empty()) {
+     while (!stos.empty()) {
       //  if(best_node.parent!=nullptr)        cout<<best_node.wierzcholek<<" "<<best_node.parent->wierzcholek<<" "<<best_node.granica<<endl;
-        node current = pq.top();
-        pq.pop();
+        node current = stos.top();
+        stos.pop();
         if(current.granica>UB) continue;
         else(rekurencja(current));
     }
@@ -60,7 +60,7 @@ cout<<"trasa: ";
 
  
 
- void Alg1::rekurencja(node no)
+ void Alg3::rekurencja(node no)
  {
     //iteracja przez dzieci wierzcholka i obliczanie granicy
     for(int i=0;i<no.odwiedzone.size();i++)
@@ -93,7 +93,7 @@ cout<<"trasa: ";
         }
         else{
             if(temp.granica<UB){
-        pq.push(temp);
+        stos.push(temp);
             }
         }
     }

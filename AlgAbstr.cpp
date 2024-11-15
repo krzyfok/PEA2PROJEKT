@@ -2,8 +2,14 @@
 #include<iostream>
 #include<vector>
 #include<fstream>
+#include<Algorithm>
 using namespace std;
 vector<vector<int>> AlgAbstr::macierz;
+ priority_queue<node, vector<node>, CompareNode>AlgAbstr:: pq;
+ queue<node> AlgAbstr::qq;
+ stack<node> AlgAbstr :: stos;
+ int AlgAbstr::UB;
+node AlgAbstr::best_node;  
 void AlgAbstr:: wczytywanie(string nazwa)
 {
 macierz.clear();
