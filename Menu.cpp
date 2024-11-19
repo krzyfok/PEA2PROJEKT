@@ -3,6 +3,7 @@
 #include"Alg1.h"
 #include"Alg2.h"
 #include"Alg3.h"
+#include"Testowanie.h"
 #include<fstream>
 #include<string>
 #include<vector>
@@ -80,16 +81,18 @@ void Menu::main_menu() {
 		Alg3 a3;
 		AlgAbstr::wczytywanie(dane_wejsciowe);
 		AlgAbstr::wyswietlanie();
-		a1.start();
-		a2.start();
-		a3.start();
-
-		
+		cout<<"lowest cost: "<<a1.start()<<" milisekund ";
+		a1.wynik();
+		cout<<endl<<"bfs: "<<a2.start()<<" milisekund ";
+		a2.wynik();
+		cout<<endl<<"dfs: "<<a3.start()<<" milisekund ";
+		a3.wynik();
 		
 	}
 	else
 	{
-
+		Testowanie t;
+		t.test_start(rozmiary_macierzy, powtorzenia, progres, dane_wyjsciowe);
 	}
 
 	cout << "NACISNIJ DOWOLNY PRZYCISK BY ZAKONCZYC";

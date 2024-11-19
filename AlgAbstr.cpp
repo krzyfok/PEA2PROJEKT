@@ -7,9 +7,10 @@ using namespace std;
 vector<vector<int>> AlgAbstr::macierz;
  priority_queue<node, vector<node>, CompareNode>AlgAbstr:: pq;
  queue<node> AlgAbstr::qq;
- stack<node> AlgAbstr :: stos;
  int AlgAbstr::UB;
 node AlgAbstr::best_node;  
+
+LicznikCzasu licznik;
 void AlgAbstr:: wczytywanie(string nazwa)
 {
 macierz.clear();
@@ -51,6 +52,81 @@ void AlgAbstr::wyswietlanie()
 		cout << endl;
 	}
 }
+void AlgAbstr::generacja_sym(int n)
+{
+
+	int rozmiar = n;
+
+	//deklaracja rozmiary wektora
+	macierz.resize(rozmiar);
+
+	for (int i = 0; i < rozmiar; i++)
+	{
+		macierz[i].resize(rozmiar);
+	}
+	//genracja macierzy asymetrycznej 
+	for (int i = 0; i < rozmiar; i++)
+	{
+
+		for (int k =i+1 ; k < rozmiar; k++)
+		{
+			int wartosc_losowa = rand();
+			macierz[i][k] = wartosc_losowa;
+			macierz[k][i] = wartosc_losowa;
+		}
+		macierz[i][i] = -1;
+	}
+
+
+}
+void AlgAbstr::generacja(int n)
+{
+
+	int rozmiar=n;
+	
+	//deklaracja rozmiary wektora
+	macierz.resize(rozmiar);
+	
+	for (int i = 0; i < rozmiar; i++)
+	{
+		macierz[i].resize(rozmiar);
+	}
+	//genracja macierzy asymetrycznej 
+	for (int i = 0; i < rozmiar; i++)
+	{
+		
+		for (int k = 0; k < rozmiar; k++)
+		{
+			if (k != i)
+			{
+				do
+				{
+					macierz[i][k] = rand();
+
+				} while (macierz[i][k]==macierz[k][i]);
+			}
+			else
+			{
+				macierz[i][k] = -1;
+			}
+		}
+	}
+
+
+
+}
+
+
+void AlgAbstr::wynik()
+{
+	cout << "Koszt trasy : " << UB;
+
+cout<<"  trasa: ";
+   for(int i=0;i<best_node.trasa.size();i++)
+   {
+    cout<<best_node.trasa[i]<<" ";
+   }
+}
 
 int AlgAbstr::pierwsze_min(int rzad)
 {
@@ -65,27 +141,7 @@ int AlgAbstr::pierwsze_min(int rzad)
  return obecna;
 }
 
-int AlgAbstr::drugie_min(int rzad)
-{
-  int obecna=INT_MAX;
-  int obecna2=INT_MAX;
- for(int i=0;i<macierz.size();i++)
- {
-    if(rzad==i) continue;
-     
-     if(macierz[rzad][i]<obecna)
-     {
-        obecna2=obecna;
-        obecna=macierz[rzad][i];
-     }
-    else if (macierz[rzad][i]<=obecna2 && macierz[rzad][i]!=obecna)
-    {
-        obecna2=macierz[rzad][i];
-    }
-    
- }
- return obecna2;
-}
+
 int AlgAbstr::lower_bound(node n, int nastepny)
 {
     

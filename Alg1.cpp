@@ -3,13 +3,14 @@
 #include<vector>
 #include<queue>
 #include<algorithm>
+
 using namespace std;
  //lowest cost
   
 
- void Alg1::start()
+double Alg1::start()
  {
-
+licznik.start();
     minima = new  int[macierz.size()];
     int LB0=0;
     UB=INT_MAX;
@@ -32,7 +33,7 @@ using namespace std;
     rekurencja(poczatek);
 
      while (!pq.empty()) {
-      //  if(best_node.parent!=nullptr)        cout<<best_node.wierzcholek<<" "<<best_node.parent->wierzcholek<<" "<<best_node.granica<<endl;
+      
         node current = pq.top();
         pq.pop();
         if(current.granica>UB) continue;
@@ -40,22 +41,9 @@ using namespace std;
     }
 
 
-    cout << "Koszt trasy : " << UB << endl;
-    /*
    
-   cout<<best_node.wierzcholek<<" "<<best_node.parent->wierzcholek<<endl;
-  a=*best_node.parent;
-   cout<<a.wierzcholek<<" "<<a.parent->wierzcholek<<endl;
-   b=*a.parent;
-    cout<<b.wierzcholek<<" "<<b.parent->wierzcholek;
-cout<<endl;
-    */
-cout<<"trasa: ";
-   for(int i=0;i<best_node.trasa.size();i++)
-   {
-    cout<<best_node.trasa[i]<<" ";
-   }
-   cout<<endl;
+
+   return licznik.stop();
 }
 
  
@@ -93,8 +81,10 @@ cout<<"trasa: ";
         }
         else{
             if(temp.granica<UB){
-        pq.push(temp);
+            pq.push(temp);
             }
         }
     }
  }
+
+ 
